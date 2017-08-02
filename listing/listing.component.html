@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div *ngFor="let emp of emps | search: [field]">
+    <div *ngFor="let emp of emps | search: field">
         <app-card [emp]="emp"></app-card>
     </div>
 

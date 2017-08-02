@@ -10,7 +10,7 @@ export class SearchPipe implements PipeTransform {
     if (input) {
       input = input.toLowerCase();
       return array.filter(function (el: any) {
-        return el.toLowerCase().indexOf(input) > -1;
+        return el.fname.toString().toLowerCase().indexOf(input) > -1;
       })
     }
     return array;
