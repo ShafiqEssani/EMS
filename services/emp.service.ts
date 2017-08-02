@@ -13,7 +13,7 @@ export class EmpService {
   constructor(private http: Http) { }
 
   getAllEmps(){
-    return this.http.get('sample/data.json')
+    return this.http.get('https://ems-a2.firebaseio.com/.json')
       .map(res => res.json());
   }
 
