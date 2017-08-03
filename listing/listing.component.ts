@@ -3,6 +3,8 @@ import { EmpService } from './../services/emp.service';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 
+declare var firebase: any;
+
 @Component({
   selector: 'app-listing',
   templateUrl: './listing.component.html',
@@ -11,7 +13,7 @@ import { Http } from '@angular/http';
 export class ListingComponent implements OnInit {
 
   error: string;
-  emps: Array<any>;
+  emps: Array<any> = [];
   field: string = '';
   // fields: Array<string> = [
   //   'id',
@@ -29,16 +31,26 @@ export class ListingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.empService.getAllEmps()
-      .subscribe(
-        data => this.emps = data,
-        error => this.error = error.statusText
-      );
 
-    this.empService.newEmp
-      .subscribe(
-        data => this.emps = [data, ...this.emps]
-      );
+    // this.empService.getAllEmps()
+    //   .subscribe(
+    //     data => this.emps = data,
+    //     error => this.error = error.statusText
+    //   );
+
+    // this.empService.newEmp
+    //   .subscribe(
+    //     data => this.emps = [data, ...this.emps]
+    //   );
+
+    this.fbGetData();
+  }
+
+  fbGetData(){
+    firebase.database().ref('/').on('child_added', ( snapshot ) => {
+      this.emps.push(snapshot.val());
+      console.log(snapshot.val());
+    })
   }
 
 }
