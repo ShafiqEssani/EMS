@@ -11,7 +11,6 @@ import { EmpService } from './services/emp.service';
 import { FormComponent } from './form/form.component';
 import { SearchPipe } from './pipes/search.pipe';
 
-import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
   declarations: [
